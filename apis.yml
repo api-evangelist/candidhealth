@@ -1,0 +1,164 @@
+aid: candidhealth
+url: https://raw.githubusercontent.com/api-evangelist/candidhealth/refs/heads/main/apis.yml
+name: Candid Health
+kind: company
+description: Candid Health is an autonomous medical-billing and revenue-cycle management
+  platform. Its REST API lets digital health providers submit encounters and claims,
+  run real-time eligibility checks, capture charges, look up payers and fee schedules,
+  reconcile remits/ERAs, and subscribe to billing events end-to-end.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Healthcare
+- Medical Billing
+- Revenue Cycle
+- Claims
+- Eligibility
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: candidhealth:encounters-claims-api
+  name: Candid Health Encounters & Claims API
+  tags:
+  - Encounters
+  - Claims
+  - Billing
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.joincandidhealth.com/api-reference/encounters/v-4/get-all
+  baseURL: https://api.joincandidhealth.com/api
+  properties:
+  - url: https://docs.joincandidhealth.com/api-reference/encounters/v-4/get-all
+    type: Documentation
+  - url: https://docs.joincandidhealth.com/api-reference/encounters/v-4/create
+    type: APIReference
+  - url: openapi/candidhealth-openapi.yml
+    type: OpenAPI
+  - url: collections/candidhealth.postman_collection.json
+    type: PostmanCollection
+  - url: collections/candidhealth.opencollection.json
+    type: OpenCollection
+  description: Submit professional encounters that Candid uses to generate and track
+    insurance claims end-to-end, with service lines, diagnoses, providers, and claim
+    status surfaced through the Encounters V4 endpoints.
+- aid: candidhealth:eligibility-api
+  name: Candid Health Eligibility API
+  tags:
+  - Eligibility
+  - Coverage
+  - Benefits
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.joincandidhealth.com/api-reference/eligibility/v-2/submit-eligibility-check
+  baseURL: https://api.joincandidhealth.com/api
+  properties:
+  - url: https://docs.joincandidhealth.com/api-reference/eligibility/v-2/submit-eligibility-check
+    type: Documentation
+  - url: https://docs.joincandidhealth.com/api-reference/pre-encounter/coverages/v-1/check-eligibility
+    type: APIReference
+  - url: openapi/candidhealth-openapi.yml
+    type: OpenAPI
+  - url: collections/candidhealth.postman_collection.json
+    type: PostmanCollection
+  - url: collections/candidhealth.opencollection.json
+    type: OpenCollection
+  description: Run real-time and batch eligibility checks to confirm active medical
+    coverage and patient benefits (co-pays, deductibles) before and after appointments.
+- aid: candidhealth:charge-capture-api
+  name: Candid Health Charge Capture API
+  tags:
+  - Charge Capture
+  - Service Lines
+  - Coding
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.joincandidhealth.com/api-reference/charge-capture/v-1/create
+  baseURL: https://api.joincandidhealth.com/api
+  properties:
+  - url: https://docs.joincandidhealth.com/api-reference/charge-capture/v-1/create
+    type: Documentation
+  - url: openapi/candidhealth-openapi.yml
+    type: OpenAPI
+  - url: collections/candidhealth.postman_collection.json
+    type: PostmanCollection
+  - url: collections/candidhealth.opencollection.json
+    type: OpenCollection
+  description: Capture charges and service-line detail that bundle into encounters,
+    decoupling clinical charge entry from final claim assembly and coding.
+- aid: candidhealth:payers-fee-schedules-api
+  name: Candid Health Payers & Fee Schedules API
+  tags:
+  - Payers
+  - Fee Schedules
+  - Rates
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.joincandidhealth.com/api-reference/payers/v-3/get
+  baseURL: https://api.joincandidhealth.com/api
+  properties:
+  - url: https://docs.joincandidhealth.com/api-reference/payers/v-3/get
+    type: Documentation
+  - url: https://docs.joincandidhealth.com/api-reference/fee-schedules/v-3/get-match
+    type: APIReference
+  - url: openapi/candidhealth-openapi.yml
+    type: OpenAPI
+  - url: collections/candidhealth.postman_collection.json
+    type: PostmanCollection
+  - url: collections/candidhealth.opencollection.json
+    type: OpenCollection
+  description: Look up payers and resolve contracted rates for service lines against
+    configured fee schedules, including rate matching, history, and payer thresholds.
+- aid: candidhealth:remits-eras-api
+  name: Candid Health Remits & ERAs API
+  tags:
+  - Remits
+  - ERA
+  - Adjudications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.joincandidhealth.com/api-reference/insurance-adjudications/v-1/get
+  baseURL: https://api.joincandidhealth.com/api
+  properties:
+  - url: https://docs.joincandidhealth.com/api-reference/insurance-adjudications/v-1/get
+    type: Documentation
+  - url: openapi/candidhealth-openapi.yml
+    type: OpenAPI
+  - url: collections/candidhealth.postman_collection.json
+    type: PostmanCollection
+  - url: collections/candidhealth.opencollection.json
+    type: OpenCollection
+  description: Retrieve insurance adjudications (ERA / 835 remittance detail) and reconcile
+    payer payments, refunds, and write-offs against submitted claims.
+- aid: candidhealth:webhooks-events-api
+  name: Candid Health Webhooks & Events API
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.joincandidhealth.com/api-reference/events/v-1/get
+  baseURL: https://api.joincandidhealth.com/api
+  properties:
+  - url: https://docs.joincandidhealth.com/api-reference/events/v-1/get
+    type: Documentation
+  - url: openapi/candidhealth-openapi.yml
+    type: OpenAPI
+  - url: collections/candidhealth.postman_collection.json
+    type: PostmanCollection
+  - url: collections/candidhealth.opencollection.json
+    type: OpenCollection
+  description: Scan and retrieve billing lifecycle events used to drive webhook-style
+    notifications as encounters, claims, and remits change state.
+common:
+- type: GitHubOrganization
+  url: https://github.com/candidhealth
+- type: LinkedIn
+  url: https://www.linkedin.com/company/candidhealth
+- type: Website
+  url: https://www.joincandidhealth.com
+- type: Documentation
+  url: https://docs.joincandidhealth.com
+- type: Plans
+  url: plans/candidhealth-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/candidhealth-rate-limits.yml
+- type: FinOps
+  url: finops/candidhealth-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

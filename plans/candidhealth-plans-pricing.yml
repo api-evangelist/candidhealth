@@ -1,0 +1,112 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Candid Health
+providerId: candidhealth
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Healthcare
+- Medical Billing
+- Revenue Cycle
+- Claims
+- Eligibility
+- Plans
+description: >-
+  Candid Health is sold sales-led with revenue-cycle pricing rather than a
+  self-serve, published API price list. Publicly reported pricing is a
+  percentage of collections (commonly cited around 3% of collections), with an
+  added per-claim fee when Candid's medical-coding services are used (commonly
+  cited as +$6 per claim). Actual rates vary by state of service, claim
+  complexity, and volume, and implementation fees may apply. No public
+  per-endpoint or per-call API rate card is published, so the figures here are
+  not reconciled and must be confirmed with Candid sales.
+notes: >-
+  Pricing is contract-based and negotiated; values below are illustrative of
+  publicly reported figures, not an official API price list. Confirm with
+  Candid sales during reconciliation.
+sources:
+- https://www.joincandidhealth.com
+- https://candidhealth.com/integrations
+- https://docs.joincandidhealth.com/introduction/getting-started
+plans:
+- id: candidhealth-collections-based
+  name: Collections-Based (Billing Only)
+  type: usage
+  description: >-
+    Revenue-cycle pricing charged as a percentage of collections when the
+    provider handles its own medical coding. Percentage varies by state,
+    complexity, and volume.
+  entries:
+  - label: Percentage of Collections
+    name: pct_of_collections
+    type: usage
+    metric: collections
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: percentage of collections (publicly cited ~3%); contact sales
+    userMultiplied: false
+  elements:
+  - name: Encounters & Claims
+  - name: Eligibility
+  - name: Payers & Fee Schedules
+  - name: Remits & ERAs
+  - name: Webhooks & Events
+- id: candidhealth-collections-plus-coding
+  name: Collections + Coding
+  type: usage
+  description: >-
+    Percentage of collections plus a per-claim fee when Candid's medical-coding
+    services are used.
+  entries:
+  - label: Percentage of Collections
+    name: pct_of_collections
+    type: usage
+    metric: collections
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: percentage of collections (publicly cited ~3%); contact sales
+    userMultiplied: false
+  - label: Per-Claim Coding Fee
+    name: per_claim_coding
+    type: usage
+    metric: claims
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-claim fee (publicly cited ~$6 per claim); contact sales
+    userMultiplied: false
+  elements:
+  - name: Encounters & Claims
+  - name: Charge Capture
+  - name: Medical Coding
+- id: candidhealth-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Volume commitments, implementation, dedicated support, and negotiated terms
+    for medical groups and digital health organizations. Contact Candid sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Implementation & Onboarding
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,56 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Candid Health
+providerId: candidhealth
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Healthcare
+- Medical Billing
+- Revenue Cycle
+- Claims
+- Eligibility
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Candid Health API enforces per-account rate limits and returns HTTP 429
+  Too Many Requests when a client exceeds them. Specific request-per-minute or
+  request-per-second thresholds are not published in the public documentation
+  and vary by environment (staging vs. production) and account; they are not
+  reconciled in this artifact.
+notes: >-
+  Confirm concrete per-endpoint limits and any Retry-After behavior with Candid
+  during reconciliation. The getting-started documentation confirms HTTP 429
+  responses but does not publish numeric limits.
+sources:
+- https://docs.joincandidhealth.com/introduction/getting-started
+- https://docs.joincandidhealth.com/introduction/candid-environments
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Account
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Per-account throttling; numeric thresholds not published. HTTP 429 on exceed.
+- name: Eligibility Checks
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Real-time eligibility checks may carry payer-specific throughput limits.
+- name: Batch Eligibility
+  scope: account
+  metric: jobs
+  limit: see provider documentation
+  notes: Batch eligibility jobs are queued and polled separately from synchronous checks.
+policies:
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and retry on HTTP 429.
+- name: Environment Separation
+  description: Staging and production are isolated; validate limits per environment before go-live.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

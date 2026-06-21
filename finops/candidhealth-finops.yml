@@ -1,0 +1,103 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Candid Health
+providerId: candidhealth
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Healthcare
+- Medical Billing
+- Revenue Cycle
+- Claims
+- Eligibility
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Candid Health spend. Candid bills on a revenue-cycle model -
+  primarily a percentage of collections, with an optional per-claim fee when
+  medical-coding services are used, plus possible implementation fees. Because
+  pricing is contract-based and not published as a per-call API rate card, the
+  meters below are illustrative and not reconciled; confirm billing terms with
+  Candid.
+notes: >-
+  No public usage-based API price list exists; cost is tied to collections and
+  claim volume under a negotiated agreement. Verify against the signed contract
+  during reconciliation.
+sources:
+- https://www.joincandidhealth.com
+- https://candidhealth.com/integrations
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Candid Health
+serviceCategory: Healthcare and Revenue Cycle Management
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Candid Health
+  ServiceCategory: Healthcare and Revenue Cycle Management
+  ProviderName: Candid Health
+  PublisherName: Candid Health
+  InvoiceIssuerName: Candid Health
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: collections
+  description: Patient and payer collections processed through Candid, billed as a percentage.
+  unit: currency
+  aggregation: sum
+  dimensions:
+  - account
+  - payer
+- name: claims_coded
+  description: Claims for which Candid performed medical coding, billed per claim.
+  unit: claims
+  aggregation: sum
+  dimensions:
+  - account
+  - payer
+- name: encounters_submitted
+  description: Encounters submitted that drive claim generation (volume signal, not directly billed).
+  unit: encounters
+  aggregation: sum
+  dimensions:
+  - account
+- name: eligibility_checks
+  description: Real-time and batch eligibility checks run against payers (volume signal).
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - payer
+- name: implementation
+  description: One-time onboarding and implementation fees.
+  unit: currency
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track collections, claim volume, and denial/adjustment detail from remits (ERAs) to understand effective cost.
+- name: Allocation
+  description: Tag encounters and claims by team, location, or payer to map Candid fees to internal cost centers.
+- name: Optimization
+  description: Reduce denials and rework via clean encounters and eligibility checks to improve net collection rate against the percentage fee.
+- name: Accountability
+  description: Assign owners per provider group; review the percentage-of-collections and per-claim coding spend monthly against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

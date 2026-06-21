@@ -1,0 +1,75 @@
+aid: candidhealth
+name: Candid Health
+review:
+  question: Does Candid Health expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Candid Health's public API is REST/HTTPS
+    only. Asynchronous billing notifications are delivered via a polled Events
+    (V1) endpoint and webhook-style callbacks, not via a documented WebSocket
+    or Server-Sent Events stream, so there is no in-scope event-streaming
+    transport to model under the current AsyncAPI scope.
+findings:
+  summary: |
+    Candid Health does not publish a documented public WebSocket API. The
+    platform exposes a REST (HTTPS) API under
+    https://api.joincandidhealth.com/api, authenticated with an OAuth bearer
+    token obtained from POST /auth/v2/token (client_id + client_secret
+    exchanged for a JWT access_token). Asynchronous integration is handled by
+    scanning the Events (V1) endpoint and by webhook callbacks the platform
+    sends to a registered URL - neither is a bidirectional ws:// / wss://
+    socket. No realtime streaming WebSocket endpoint is documented for
+    encounters, claims, eligibility, remits, or events.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.joincandidhealth.com/api
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Outbound HTTPS callbacks plus a polled Events (V1) endpoint. Not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the Candid Health API reference as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://api.joincandidhealth.com/api/auth/v2/token
+    - GET    https://api.joincandidhealth.com/api/encounters/v4
+    - POST   https://api.joincandidhealth.com/api/encounters/v4
+    - GET    https://api.joincandidhealth.com/api/encounters/v4/{encounter_id}
+    - POST   https://api.joincandidhealth.com/api/eligibility/v2
+    - POST   https://api.joincandidhealth.com/api/pre-encounter/coverages/v1/check_eligibility
+    - POST   https://api.joincandidhealth.com/api/charge_captures/v1
+    - GET    https://api.joincandidhealth.com/api/charge_captures/v1
+    - GET    https://api.joincandidhealth.com/api/charge_captures/v1/{charge_capture_id}
+    - GET    https://api.joincandidhealth.com/api/payers/v3
+    - GET    https://api.joincandidhealth.com/api/payers/v3/{payer_uuid}
+    - GET    https://api.joincandidhealth.com/api/fee-schedules/v3/service-line/{service_line_id}/match
+    - GET    https://api.joincandidhealth.com/api/insurance_adjudications/v1/{insurance_adjudication_id}
+    - GET    https://api.joincandidhealth.com/api/events/v1
+    - GET    https://api.joincandidhealth.com/api/events/v1/{event_id}
+sources:
+  - url: https://docs.joincandidhealth.com/introduction/getting-started
+    type: Documentation
+    note: Client-credentials auth and HTTP 429 throttling; REST only, no WebSocket.
+  - url: https://docs.joincandidhealth.com/api-reference/encounters/v-4/get-all
+    type: APIReference
+    note: Confirms REST host https://api.joincandidhealth.com and path /api/encounters/v4.
+  - url: https://docs.joincandidhealth.com/api-reference/auth/default/get-token
+    type: APIReference
+    note: POST /api/auth/v2/token exchanges client_id/client_secret for a JWT bearer token.
+  - url: https://docs.joincandidhealth.com/llms.txt
+    type: Documentation
+    note: Full reference index; Events (V1) is the async surface, no WebSocket section.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists. Asynchronous behavior is
+    delivered through polled Events (V1) and outbound webhook callbacks over
+    HTTPS, which are out of scope for AsyncAPI WebSocket/SSE modeling, so no
+    AsyncAPI document was authored.
