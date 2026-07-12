@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/candidhealth-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: 'OAuth bearer token obtained from POST /auth/v2/token. Send as `Authorization:
+    Bearer <access_token>`.'
+  sources:
+  - openapi/candidhealth-openapi.yml

@@ -145,6 +145,10 @@ apis:
   description: Scan and retrieve billing lifecycle events used to drive webhook-style
     notifications as encounters, claims, and remits change state.
 common:
+- type: DomainSecurity
+  url: security/candidhealth-domain-security.yml
+- type: Authentication
+  url: authentication/candidhealth-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/candidhealth
 - type: LinkedIn
@@ -159,6 +163,8 @@ common:
   url: rate-limits/candidhealth-rate-limits.yml
 - type: FinOps
   url: finops/candidhealth-finops.yml
+- url: https://candidhealth.com/blog
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
