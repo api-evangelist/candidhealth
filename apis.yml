@@ -145,6 +145,8 @@ apis:
   description: Scan and retrieve billing lifecycle events used to drive webhook-style
     notifications as encounters, claims, and remits change state.
 common:
+- type: AgenticAccess
+  url: agentic-access/candidhealth-agentic-access.yml
 - type: DomainSecurity
   url: security/candidhealth-domain-security.yml
 - type: Authentication
