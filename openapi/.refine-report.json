@@ -1,0 +1,28 @@
+{
+  "provider": "candidhealth",
+  "sources": [
+    "candidhealth-auth-api-openapi.yml",
+    "candidhealth-charge-capture-api-openapi.yml",
+    "candidhealth-eligibility-api-openapi.yml",
+    "candidhealth-encounters-api-openapi.yml",
+    "candidhealth-events-api-openapi.yml",
+    "candidhealth-fee-schedules-api-openapi.yml",
+    "candidhealth-insurance-adjudications-api-openapi.yml",
+    "candidhealth-payers-api-openapi.yml"
+  ],
+  "outputs": [
+    "candidhealth-auth-api-openapi.yml",
+    "candidhealth-charge-capture-api-openapi.yml",
+    "candidhealth-eligibility-api-openapi.yml",
+    "candidhealth-encounters-api-openapi.yml",
+    "candidhealth-events-api-openapi.yml",
+    "candidhealth-fee-schedules-api-openapi.yml",
+    "candidhealth-insurance-adjudications-api-openapi.yml",
+    "candidhealth-payers-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
